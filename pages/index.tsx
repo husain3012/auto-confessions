@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 const HomePage = () => {
-  const submitHandler = (values) => {
+  const submitHandler = (values: any) => {
     console.log(values);
   };
   return (
