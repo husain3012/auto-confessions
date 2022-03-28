@@ -37,13 +37,16 @@ body {
 .form-text-area {
   background-color: #fff;
   height: 50px;
-  padding-left: 16px;
+  width: 100%;
+  outline: none;
+  border: none;
+  margin: 10px 0px;
+  padding: 10px;
 }
 
 .contact-form .form-text-area {
   background-color: #fff;
   height: auto;
-  padding-left: 16px;
 }
 
 .contact-form .form-control::placeholder {
