@@ -10,6 +10,7 @@ interface FormValues {
 
 const HomePage = () => {
 	const router = useRouter();
+	const [Processing, setProcessing] = useState(false);
 	const [data, setData] = useState({
 		branch: "",
 		confession: "",
@@ -17,13 +18,14 @@ const HomePage = () => {
 	});
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setProcessing(true);
 
 		const res = await axios.post("/api/insta/generate", {
 			branch: data.branch,
 			confession: data.confession,
 		});
 
-		const image = res.data.base64;
+		const image = res.data?.image;
 		router.push({
 			pathname: "/post",
 			query: {
@@ -31,6 +33,7 @@ const HomePage = () => {
 				caption: data.caption,
 			},
 		});
+		setProcessing(false);
 		return e;
 	};
 
@@ -115,7 +118,14 @@ const HomePage = () => {
 					</label>
 				</div>
 				<div className="submit-button-wrapper">
-					<input type="submit" value="Send" />
+					<input
+						type="submit"
+						value={!Processing ? "SEND" : "LOADING"}
+						style={{
+							opacity: Processing ? 0.5 : 1,
+							pointerEvents: Processing ? "none" : "auto",
+						}}
+					/>
 				</div>
 			</form>
 		</div>

@@ -38,7 +38,12 @@ function Post(props: any) {
 
 	return (
 		<div className="contact-form-wrapper d-flex justify-content-center">
-			<div className="p-2 bg-white rounded-2 shadow-lg">
+			<div
+				className="p-2 bg-white rounded-2 shadow-lg"
+				style={{
+					minWidth: "300px",
+				}}
+			>
 				{data && (
 					<Image
 						src={data}
@@ -72,7 +77,7 @@ function Post(props: any) {
 						}}
 						disabled={LoadingPost}
 					>
-						Post
+						{LoadingPost ? "Loading" : "Post"}
 					</button>
 				</div>
 			</div>

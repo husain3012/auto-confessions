@@ -1,39 +1,29 @@
+import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 // @ts-ignore
-import Instagram from "instagram-web-api";
-import { v2 as cloudinary } from "cloudinary";
 
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	console.log(
-		process.env.NEXT_PUBLIC_USERNAME,
-		" ",
-		process.env.NEXT_PUBLIC_PASSWORD
-	);
-
 	if (req.method === "POST") {
-		const client = new Instagram({
-			username: process.env.NEXT_PUBLIC_USERNAME,
-			password: process.env.NEXT_PUBLIC_PASSWORD,
-		});
-		await client.login();
 		try {
 			const { image, caption } = req.body;
 
-			const result = await cloudinary.uploader.upload(image);
-			console.log(result, caption);
+			console.log(`${process.env.NEXT_PUBLIC_API}/insta/post`);
+			const response = await axios.post(
+				`${process.env.NEXT_PUBLIC_API}/insta/post`,
+				{
+					image,
+					caption,
+				}
+			);
 
-			await client.uploadPhoto({
-				photo: result.url,
-				caption: caption,
-				post: "feed",
-			});
+			console.log(response);
 
 			res.status(200).json({
 				status: "success",
-				image: result.url,
+				image: image,
 			});
 		} catch (err) {
 			console.log(err);
