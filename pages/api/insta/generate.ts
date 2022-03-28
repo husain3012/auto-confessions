@@ -156,11 +156,10 @@ export default async function handler(
 			res.status(200).send({
 				status: "success",
 				image: result.url,
-
 			});
 		} catch (err) {
 			console.log(err);
-			res.status(500).json({ message: "error" });
+			res.status(500).json({ message: "error", error: err });
 		}
 	} else {
 	}
