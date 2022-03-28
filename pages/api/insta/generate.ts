@@ -4,6 +4,7 @@ import templateIMG from "./template.png";
 import { v2 as cloudinary } from "cloudinary";
 import Jimp from "jimp";
 import fs from "fs";
+
 interface PostInfo {
 	branch: string;
 	confession: string;
@@ -155,6 +156,7 @@ export default async function handler(
 			res.status(200).send({
 				status: "success",
 				image: result.url,
+
 			});
 		} catch (err) {
 			console.log(err);
