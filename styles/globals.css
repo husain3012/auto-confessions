@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&family=Sniglet&display=swap');
+
 body {
   background-color: #ffd63e;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff771f'/%3E%3Cstop offset='1' stop-color='%23ff771f' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff2abc'/%3E%3Cstop offset='1' stop-color='%23ff2abc' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ec0bff'/%3E%3Cstop offset='1' stop-color='%23ec0bff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FFD63E'/%3E%3Cstop offset='1' stop-color='%23FFD63E' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0000'/%3E%3Cstop offset='1' stop-color='%23FF0000' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23173CFF'/%3E%3Cstop offset='1' stop-color='%23173CFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
@@ -9,9 +11,21 @@ body {
   padding: 0;
 }
 
+.text-p-primary {
+  color: #f33fb0;
+}
+
+.bg-p-primary {
+  background-color: #f33fb0;
+}
+
+.post-caption, .font-cursive{
+  font-family: "Sniglet", cursive;
+}
+
 .contact-form-wrapper {
   width: 100vw;
-  height: 90vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +41,7 @@ body {
   -webkit-backdrop-filter: blur(10.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .contact-form textarea {
@@ -42,6 +57,14 @@ body {
   border: none;
   margin: 10px 0px;
   padding: 10px;
+}
+
+button{
+  font-family: 'Sniglet', cursive;
+}
+
+.contact-form .title, .contact-form .description{
+  font-family: 'Sniglet', cursive;
 }
 
 .contact-form .form-text-area {
