@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import templateIMG from "./template.png";
 // import templateFont from "./font.ttf";
+import { v2 as cloudinary } from "cloudinary";
 import Jimp from "jimp";
+import fs from "fs";
 
 interface PostInfo {
 	branch: string;
@@ -99,7 +101,7 @@ export default async function handler(
 ) {
 	if (req.method === "POST") {
 		try {
-			const Post = await Jimp.read("public/assets/template.png");
+			const Post = await Jimp.read("public/assets/template.jpg");
 			const fontBranch = await Jimp.loadFont("public/assets/font_branch.fnt");
 			const ConfessionRoot: PostInfo = {
 				pw: Post.bitmap.width,
@@ -143,9 +145,18 @@ export default async function handler(
 				);
 			});
 
-			const base64 = await Post.getBase64Async(Jimp.MIME_PNG);
+			const base64: string = await Post.getBase64Async(Jimp.MIME_PNG);
+			Post.write("public/assets/generated.jpg");
+			const result = await cloudinary.uploader.upload(
+				"public/assets/generated.jpg"
+			);
+
+			fs.unlinkSync("public/assets/generated.jpg");
+
 			res.status(200).send({
-				base64,
+				status: "success",
+				image: result.url,
+
 			});
 		} catch (err) {
 			console.log(err);
