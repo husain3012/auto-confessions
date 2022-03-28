@@ -17,7 +17,7 @@ const HomePage = () => {
           <h5 className="title">JMI Confessions 😉</h5>
           <p className="description">Enter your branch name and your confession below ~</p>
           <div>
-            <Field name="branch" type="text" className="form-control rounded border-white mb-3 form-input" id="branch" placeholder="CSE" required />
+            <Field name="branch" type="text" className="form-control rounded border-white mb-3 form-input" id="branch" placeholder="Branch" required />
           </div>
           <div>
             <Field name="message" as="textarea" id="message" className="form-control rounded border-white mb-3 form-text-area" rows="5" cols="30" placeholder="Message" required></Field>
