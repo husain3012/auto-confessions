@@ -101,8 +101,12 @@ export default async function handler(
 ) {
 	if (req.method === "POST") {
 		try {
-			const Post = await Jimp.read("public/assets/template.jpg");
-			const fontBranch = await Jimp.loadFont("public/assets/font_branch.fnt");
+			const Post = await Jimp.read(
+				`${process.env.NEXT_PUBLIC_HOST}/assets/template.jpg`
+			);
+			const fontBranch = await Jimp.loadFont(
+				`${process.env.NEXT_PUBLIC_HOST}/assets/font_branch.fnt`
+			);
 			const ConfessionRoot: PostInfo = {
 				pw: Post.bitmap.width,
 				ph: Post.bitmap.height,
@@ -146,12 +150,11 @@ export default async function handler(
 			});
 
 			const base64: string = await Post.getBase64Async(Jimp.MIME_PNG);
-			Post.write("public/assets/generated.jpg");
-			const result = await cloudinary.uploader.upload(
-				"public/assets/generated.jpg"
-			);
+			const result = await cloudinary.uploader.upload(base64, {
+				format: "jpg",
+			});
 
-			fs.unlinkSync("public/assets/generated.jpg");
+			console.log(result);
 
 			res.status(200).send({
 				status: "success",
