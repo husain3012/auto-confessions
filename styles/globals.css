@@ -12,11 +12,11 @@ body {
 }
 
 .text-p-primary {
-  color: #f33fb0;
+  color: #f33fb0!important;
 }
 
 .bg-p-primary {
-  background-color: #f33fb0;
+  background-color: #f33fb0!important;
 }
 
 .post-caption, .font-cursive{
