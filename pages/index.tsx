@@ -2,6 +2,7 @@ import React, { FormEventHandler, useState } from "react";
 import { Formik, Field, Form as form } from "formik";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { Toaster, toast } from "react-hot-toast";
 
 interface FormValues {
 	branch: string;
@@ -19,21 +20,36 @@ const HomePage = () => {
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setProcessing(true);
+		try {
+			toast.loading("Generating Post...", {
+				duration: 2000,
+			});
+			const res = await axios.post("/api/insta/generate", {
+				branch: data.branch,
+				confession: data.confession,
+			});
+			toast.success("Post generated successfully");
 
-		const res = await axios.post("/api/insta/generate", {
-			branch: data.branch,
-			confession: data.confession,
-		});
-
-		const image = res.data?.image;
-		router.push({
-			pathname: "/post",
-			query: {
-				image,
-				caption: data.caption,
-			},
-		});
-		setProcessing(false);
+			const image = res.data?.image;
+			setTimeout(
+				() =>
+					router.push({
+						pathname: "/post",
+						query: {
+							image,
+							caption: data.caption,
+						},
+					}),
+				1000
+			);
+		} catch (err) {
+			console.log(err);
+			toast.error("Error generating post");
+		} finally {
+			setTimeout(() => {
+				setProcessing(false);
+			}, 1000);
+		}
 		return e;
 	};
 
@@ -128,6 +144,7 @@ const HomePage = () => {
 					/>
 				</div>
 			</form>
+			<Toaster position="top-center" />
 		</div>
 	);
 };

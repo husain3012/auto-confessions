@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { withRouter, useRouter } from "next/router";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 function Post(props: any) {
 	const [data, setData] = useState("");
@@ -17,21 +18,36 @@ function Post(props: any) {
 	const submitHandler = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoadingPost(true);
-
-		const res = await axios.post("/api/insta/post", {
-			image: data,
-			caption: caption,
-		});
-
-		if (res.data.status === "success") {
-			router.push({
-				pathname: "/status/success",
-				query: {
-					image: res.data?.image,
-				},
+		try {
+			toast.loading("Posting...", {
+				duration: 2000,
 			});
-		} else {
-			router.push("/status/error");
+			
+			const res = await axios.post("/api/insta/post", {
+				image: data,
+				caption: caption,
+			});
+
+			if (res.data.status === "success") {
+				setTimeout(() => {
+					router.push({
+						pathname: "/status/success",
+						query: {
+							image: res.data?.image,
+						},
+					});
+				}, 4000);
+			} else {
+				setTimeout(() => {
+					router.push("/status/error");
+				}, 4000);
+			}
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setTimeout(() => {
+				setLoadingPost(false);
+			}, 1000);
 		}
 		return e;
 	};
@@ -81,6 +97,7 @@ function Post(props: any) {
 					</button>
 				</div>
 			</div>
+			<Toaster position="top-center" />
 		</div>
 	);
 }
