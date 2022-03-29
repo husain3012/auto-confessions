@@ -129,7 +129,7 @@ export default async function handler(
 			);
 
 			const fontConfession = await Jimp.loadFont(
-				"public/assets/font_confess.fnt"
+				`${process.env.NEXT_PUBLIC_HOST}/assets/font_confess.fnt`
 			);
 
 			// 52 characters ek line mai
