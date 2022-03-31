@@ -28,6 +28,16 @@ const HomePage = () => {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+		setData((prev) => {
+			const newData = { ...prev };
+			newData.caption = `${router.query.caption || ""}`;
+			newData.branch = `${router.query.branch || ""}`;
+			newData.confession = `${router.query.confession || ""}`;
+			return newData;
+		});
+	}, [router.query]);
+
 	const fetchData = async () => {
 		try {
 			const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/insta/info`);
@@ -82,6 +92,8 @@ const HomePage = () => {
 							query: {
 								image,
 								caption: data.caption,
+								confession: data.confession,
+								branch: data.branch,
 							},
 						}),
 					1000

@@ -78,7 +78,14 @@ function Post(props: any) {
 					<button
 						className="bg-danger my-2 btn text-white px-4"
 						onClick={() => {
-							router.push("/");
+							router.push({
+								pathname: "/",
+								query: {
+									branch: props.router?.query?.branch,
+									confession: props.router?.query?.confession,
+									caption: props.router?.query?.caption,
+								},
+							});
 						}}
 					>
 						Go Back
