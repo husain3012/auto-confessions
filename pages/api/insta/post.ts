@@ -24,6 +24,7 @@ export default async function handler(
 			res.status(200).json({
 				status: "success",
 				image: image,
+				link: response.data.link,
 			});
 		} catch (err) {
 			console.log(err);

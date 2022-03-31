@@ -22,7 +22,7 @@ function Post(props: any) {
 			toast.loading("Posting...", {
 				duration: 2000,
 			});
-			
+
 			const res = await axios.post("/api/insta/post", {
 				image: data,
 				caption: caption,
@@ -34,6 +34,7 @@ function Post(props: any) {
 						pathname: "/status/success",
 						query: {
 							image: res.data?.image,
+							link: res.data?.link,
 						},
 					});
 				}, 4000);

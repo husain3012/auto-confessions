@@ -1,6 +1,8 @@
 import React from "react";
+import { withRouter } from "next/router";
+import Image from "next/image";
 
-function Success() {
+function Success(props: any) {
 	return (
 		<div
 			className="d-flex justify-content-center align-items-center font-cursive"
@@ -10,6 +12,15 @@ function Success() {
 			}}
 		>
 			<div className="bg-white p-2 rounded-3 flex flex-column justify-content-center align-items-center text-center px-5 py-5 shadow-lg">
+				<a href={props.router.query.link}>
+					<Image
+						src={props.router.query.image}
+						alt="post"
+						width={400}
+						height={400}
+					/>
+					<span>{props.router.query.link}</span>
+				</a>
 				<h1 className="opacity-75 my-0 text-success">
 					Success
 					<svg
@@ -34,4 +45,4 @@ function Success() {
 	);
 }
 
-export default Success;
+export default withRouter(Success);
