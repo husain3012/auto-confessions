@@ -12,14 +12,22 @@ function Success(props: any) {
 			}}
 		>
 			<div className="bg-white p-2 rounded-3 flex flex-column justify-content-center align-items-center text-center px-5 py-5 shadow-lg">
-				<a href={props.router.query.link}>
-					<Image
-						src={props.router.query.image}
-						alt="post"
-						width={400}
-						height={400}
-					/>
-					<span>{props.router.query.link}</span>
+				<a
+					href={props.router.query.link}
+					className="flex flex-column justify-content-center mt-3"
+				>
+					{props.router.query.image ? (
+						<div>
+							<Image
+								src={props.router.query.image}
+								alt="post"
+								width={300}
+								className="w-25"
+								height={300}
+							/>
+						</div>
+					) : null}
+					<span className="mt-4">{props.router.query.link}</span>
 				</a>
 				<h1 className="opacity-75 my-0 text-success">
 					Success
