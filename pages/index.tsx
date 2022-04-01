@@ -62,7 +62,7 @@ const HomePage = () => {
 			const textAnalysis = await axios.post(
 				`${process.env.NEXT_PUBLIC_API}/analyze/text`,
 				{
-					text: `${data.confession}`,
+					text: `${data.confession}. ${data.branch}. ${data.caption}`,
 				}
 			);
 
