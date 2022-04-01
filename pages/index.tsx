@@ -231,10 +231,12 @@ const HomePage = () => {
 						) : (
 							<div>
 								<p>
-									<span className="text-danger">
+									<span className="text-danger small">
 										{postdata.postCount === 5
 											? "5 Posts per day limit reached"
-											: "You can post again in " + postdata.left + "minutes"}
+											: "Someone has posted already. You can post after " +
+											  postdata.left +
+											  " minutes"}
 									</span>
 								</p>
 								<input
