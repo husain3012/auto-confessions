@@ -29,19 +29,15 @@ function Post(props: any) {
 			});
 
 			if (res.data.status === "success") {
-				setTimeout(() => {
-					router.push({
-						pathname: "/status/success",
-						query: {
-							image: res.data?.image,
-							link: res.data?.link,
-						},
-					});
-				}, 4000);
+				router.push({
+					pathname: "/status/success",
+					query: {
+						image: res.data?.image,
+						link: res.data?.link,
+					},
+				});
 			} else {
-				setTimeout(() => {
-					router.push("/status/error");
-				}, 4000);
+				router.push("/status/error");
 			}
 		} catch (err) {
 			console.log(err);
